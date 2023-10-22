@@ -1,0 +1,53 @@
+<html>
+<head>
+    <title>Simple RPG Game</title>
+    <script>
+        var player = {
+            name: "Hero",
+            health: 100,
+            attack: function() {
+                monster.health -= 10;
+                if (monster.health <= 0) {
+                    alert("You defeated the monster!");
+                } else {
+                    alert("You attacked the monster. Its health is now " + monster.health);
+                    monster.attack();
+                }
+            }
+        };
+
+        var monster = {
+            name: "Monster",
+            health: 50,
+            attack: function() {
+                player.health -= 5;
+                if (player.health <= 0) {
+                    alert("The monster defeated you!");
+                } else {
+                    alert("The monster attacked you. Your health is now " + player.health);
+                }
+            }
+        };
+
+        function startGame() {
+            var action = prompt("Do you want to 'attack' the monster or 'run' away?");
+            if (action == "attack") {
+                player.attack();
+            } else if (action == "run") {
+                var chance = Math.random();
+                if (chance < 0.15) {
+                    alert("You successfully ran away. You win!");
+                } else {
+                    alert("You failed to run away. The monster attacks you.");
+                    monster.attack();
+                }
+            } else {
+                alert("Invalid action. Please enter 'attack' or 'run'.");
+            }
+        }
+    </script>
+</head>
+<body onload="startGame()">
+    <h1>Welcome to Simple RPG Game!</h1>
+</body>
+</html>
